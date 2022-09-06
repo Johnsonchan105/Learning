@@ -100,7 +100,7 @@ If JSX element has multiple outer elements, just wrap it in `<div></div>`
 ReactDOM.render(<h1>Hello world</h1>, document.getElementById('app'));
 ```
 
-#### ReactDOM.render() I
+#### `ReactDOM.render()` I
 
 ReactDOM = Javascript library with react-specific methods  
 `ReactDOM.render()` - most common way to render JSX
@@ -109,9 +109,46 @@ ReactDOM = Javascript library with react-specific methods
 
 1st argument for `ReactDOM.render()` should be a JSX expression
 
-#### ReactDOM.render() II
+#### `ReactDOM.render()` II
 
-`document.getElementById('app')` 
+the first argument is appended to whatever element is selected by the second element  
+go to `index.hmtl` to find the element that would be selected by `document.getElementbyId('app')`  
+the element acted as a containter for `ReactDOM.render()`'s first argument 
+
+```html
+<main id="app">
+  <h1>Render me!</h1>
+</main>
+```
+
+changing the id in `index.html` would also require changing the string passed into 2nd argument of `ReactDOM.render()`
+
+#### Passing a Variable to `ReactDOM.render()`
+
+1st argument should evaluate to JSX expression but doesn't have to literally be a JSX expression and can be a variable
+
+```JSX
+const toDoList = (
+  <ol>
+    <li>Learn React</li>
+    <li>Become a Developer</li>
+  </ol>
+);
+ReactDOM.render(
+  toDoList, 
+  document.getElementById('app')
+);
+```
+
+#### The Virtual DOM
+
+`ReactDOM.render()` only updates DOM elements that have been changed - if you render exact same thing twice in a row, 2nd render won't do anything.  
+
+Virtual DOM is a representation of a DOM object (lightweight copy) - has same properties but lack power to change what's on the screen. Manipulating virtual DOM is fast because nothing is drawn on the screen.
+
+Render a JSX element, every virtual DOM object is updated. After updating, React compares virtual DOM to virtual DOM snapshot taken right before the update. Comparing new DOM w pre-update version - finds out which exact DOM objects have been changed (diffing)
+
+Once React knows which virtual DOM objects have changed, React updates those objects and only those objects on the real DOM - update only necessary parts of DOM
 
 ### Advanced JSX
 
