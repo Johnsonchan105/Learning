@@ -152,6 +152,9 @@ Once React knows which virtual DOM objects have changed, React updates those obj
 
 ### Advanced JSX
 
+#### class v className
+
+HTML
 
 ## React Components
 
