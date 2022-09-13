@@ -123,4 +123,3 @@ IDOR Mitigation
 - Reusage - implement access control mechanisms once and re-use them throughout the application
 - alerts - log access control failures, alert admins when appropriate (e.g. repeated failures)
 - Indirect Object Referenc - limit to meaning of the parameter to the user's scope or non-predictable character string
-
