@@ -154,7 +154,119 @@ Once React knows which virtual DOM objects have changed, React updates those obj
 
 #### class v className
 
-HTML
+Cannot use `class` as an attribute name. Must use `className` instead  
+`class` is a reserved keyword in js and JSX automatically renders `className` attributes as `class` attributes
+
+#### Self-Closing Tags
+
+HTML elements that use only 1 tag is called a self closing tag such as `<img>` and `<br>`  
+JSX requires that you have to include the slash for self-closing tags
+
+```JSX
+//Fine in JSX:
+  <br />
+//NOT FINE AT ALL in JSX:
+  <br>
+```
+
+#### Javscript in Your JSX in Your Javascript
+
+you can include js code in your JSX expression inside a js file
+
+#### Curly Braces in JSX
+
+any code between JSX tags will be read as JSX, not js. So when you add two numbers inside of a header it will not print out the result but instead output the expression. To ouput the result, wrap the js expression inside of the JSX tags in curly braces and it will treat expressions inside JSX tags as js code.
+
+```JSX
+ReactDOM.render(
+  <h1>2 + 3</h1>,
+  document.getElementById('app')
+);//Outputs a header of "2 + 3"
+ReactDOM.render(
+  <h1>{2 + 3}</h1>,
+  document.getElementById('app')
+); //Outputs a header of "5"
+```
+
+#### 20 Digits of Pi in JSX
+
+can inject regular js into JSX expressions
+
+```JSX
+let math = <h1>2 + 3 = {2 + 3}</h1>
+ReactDOM.render(math, document.getElementById('app'));
+//Ouputs a header of "2 + 3 = 5"
+```
+
+#### Variables in JSX
+
+Inject js into JSX, JS is part of the same environment as the rest of the JS in the file. Can access variables while inside JSX expressions, even if it is declared on the outside.
+
+```JSX
+// Declare a variable:
+const name = 'Gerdo';
+// Access your variable from inside of a JSX expression:
+const greeting = <p>Hello, {name}!</p>;
+```
+
+#### Value Attributes in JSX
+
+common to use variables to set attributes
+
+```JSX
+// Use a variable to set the `height` and `width` attributes:
+const sideLength = "200px";
+const panda = (
+  <img 
+    src="images/panda.jpg" 
+    alt="panda" 
+    height={sideLength} 
+    width={sideLength} />
+);
+```
+
+object properties can also be used to set attributes 
+
+```JSX
+const pics = {
+  panda: "http://bit.ly/1Tqltv5",
+  owl: "http://bit.ly/1XGtkM3",
+  owlCat: "http://bit.ly/1Upbczi"
+}; 
+const panda = (
+  <img 
+    src={pics.panda} 
+    alt="Lazy Panda" />
+);
+const owl = (
+  <img 
+    src={pics.owl} 
+    alt="Unimpressed Owl" />
+);
+const owlCat = (
+  <img 
+    src={pics.owlCat} 
+    alt="Ghastly Abomination" />
+); 
+```
+
+#### Event Listeners in JSX
+
+Can create event listeners by giving it a special attribute  
+ex: `<img onClick={myFunc} />`  
+event listener attribute's name should be the word `on` plus the type of event you're listening to written in camelCase.  
+value of an event listener attribute should be  function\
+
+```JSX
+function myFunc() {
+  alert('Make myFunc');
+}
+<img onClick={myFunc} />
+```
+
+#### JSX Conditional;If Statements That Do Work
+
+
 
 ## React Components
 
